@@ -1,11 +1,16 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
+
+import 'package:flutter/material.dart';
 
 class ColorLoader extends StatefulWidget {
   final List<Color>? colors;
   final Duration? duration;
 
-  ColorLoader({this.colors, this.duration});
+  ColorLoader({
+    super.key,
+    this.colors,
+    this.duration,
+  });
 
   @override
   _ColorLoaderState createState() =>
@@ -31,8 +36,6 @@ class _ColorLoaderState extends State<ColorLoader>
   @override
   void initState() {
     super.initState();
-
-
 
     controller = new AnimationController(
       vsync: this,

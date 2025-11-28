@@ -4,11 +4,14 @@ class LoginScreen4 extends StatefulWidget {
   final Color primaryColor;
   final Color secondaryColor;
   final Color logoGreen;
+
   LoginScreen4({
+    super.key,
     this.primaryColor = const Color(0xFF990000),
     this.secondaryColor = const Color(0xFFEEEEEE),
     this.logoGreen = const Color(0xFF0000FF),
   });
+
   @override
   _LoginScreen4State createState() => _LoginScreen4State();
 }
@@ -62,7 +65,9 @@ class _LoginScreen4State extends State<LoginScreen4> {
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                decoration: BoxDecoration(color: widget.secondaryColor, border: Border.all(color: Colors.blue)),
+                decoration: BoxDecoration(
+                    color: widget.secondaryColor,
+                    border: Border.all(color: Colors.blue)),
                 child: TextFormField(
                   controller: _emailController,
                   style: TextStyle(color: Colors.white),
@@ -84,7 +89,9 @@ class _LoginScreen4State extends State<LoginScreen4> {
               SizedBox(height: 20),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                decoration: BoxDecoration(color: widget.secondaryColor, border: Border.all(color: Colors.blue)),
+                decoration: BoxDecoration(
+                    color: widget.secondaryColor,
+                    border: Border.all(color: Colors.blue)),
                 child: TextFormField(
                   focusNode: myFocusNode,
                   controller: _passwordController,
@@ -109,7 +116,8 @@ class _LoginScreen4State extends State<LoginScreen4> {
                 height: 50,
                 onPressed: () {},
                 color: widget.logoGreen,
-                child: Text('Login', style: TextStyle(color: Colors.white, fontSize: 16)),
+                child: Text('Login',
+                    style: TextStyle(color: Colors.white, fontSize: 16)),
                 textColor: Colors.white,
               ),
               SizedBox(height: 20),
@@ -122,7 +130,8 @@ class _LoginScreen4State extends State<LoginScreen4> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text('Sign In using Google', style: TextStyle(color: Colors.white, fontSize: 16)),
+                    Text('Sign In using Google',
+                        style: TextStyle(color: Colors.white, fontSize: 16)),
                   ],
                 ),
                 textColor: Colors.white,
@@ -135,7 +144,12 @@ class _LoginScreen4State extends State<LoginScreen4> {
                   children: <Widget>[
                     GestureDetector(
                       onTap: () {},
-                      child: Text('Sign Up?', textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
+                      child: Text('Sign Up?',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold)),
                     ),
                   ],
                 ),

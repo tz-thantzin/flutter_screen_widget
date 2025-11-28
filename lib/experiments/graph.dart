@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:math';
+
+import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math.dart' as Vector;
 
 class Graph extends StatefulWidget {

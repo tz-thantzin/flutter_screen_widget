@@ -5,99 +5,104 @@ class SimpleRoundIconButton extends StatelessWidget {
   final Text buttonText;
   final Icon icon;
   final Color? iconColor;
+  final double iconSize;
   final Alignment iconAlignment;
   final Function? onPressed;
 
-  SimpleRoundIconButton(
-      {this.backgroundColor = Colors.redAccent,
-      this.buttonText = const Text("REQUIRED TEXT"),
-      this.icon = const Icon(Icons.email),
-      this.iconColor,
-      this.iconAlignment = Alignment.centerLeft,
-      this.onPressed});
+  SimpleRoundIconButton({
+    this.backgroundColor = Colors.redAccent,
+    this.buttonText = const Text("REQUIRED TEXT"),
+    this.icon = const Icon(Icons.email),
+    this.iconColor,
+    this.iconSize = 28.0,
+    this.iconAlignment = Alignment.centerLeft,
+    this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 20.0),
-      padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: [
-          new Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               TextButton(
                 style: ButtonStyle(
-                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(30.0))),
-                  overlayColor: MaterialStateProperty.all(this.backgroundColor),
+                  shape: WidgetStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                  ),
+                  overlayColor: WidgetStateProperty.all(this.backgroundColor),
                   backgroundColor:
-                      MaterialStateProperty.all(this.backgroundColor),
+                      WidgetStateProperty.all(this.backgroundColor),
                 ),
-                child: new Row(
+                child: Row(
                   children: <Widget>[
+                    // Left Icon Button
                     iconAlignment == Alignment.centerLeft
-                        ? new Transform.translate(
+                        ? Transform.translate(
                             offset: Offset(-10.0, 0.0),
-                            child: new Container(
+                            child: Container(
                               padding: const EdgeInsets.all(5.0),
-                              child: FlatButton(
-                                shape: new RoundedRectangleBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(28.0)),
-                                splashColor: Colors.white,
-                                color: Colors.white,
+                              child: TextButton(
+                                style: TextButton.styleFrom(
+                                  backgroundColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(28.0),
+                                  ),
+                                  padding: EdgeInsets.all(8),
+                                ),
                                 child: Icon(
                                   icon.icon,
-                                  color: iconColor == null
-                                      ? backgroundColor
-                                      : iconColor,
+                                  size: iconSize,
+                                  color: iconColor ?? backgroundColor,
                                 ),
-                                onPressed: () => {},
+                                onPressed: () {},
                               ),
                             ),
                           )
                         : Container(),
-                    iconAlignment == Alignment.centerLeft
-                        ? Container()
-                        : Container(),
-                    new Padding(
-                      padding: const EdgeInsets.only(
-                          top: 20.0, bottom: 20.0, left: 20.0, right: 20.0),
+                    // Button Text
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 20.0, horizontal: 20.0),
                       child: buttonText,
                     ),
+                    // Right Icon Button
                     iconAlignment == Alignment.centerRight
-                        ? Container()
-                        : Container(),
-                    iconAlignment == Alignment.centerRight
-                        ? new Transform.translate(
+                        ? Transform.translate(
                             offset: Offset(10.0, 0.0),
-                            child: new Container(
+                            child: Container(
                               padding: const EdgeInsets.all(5.0),
-                              child: FlatButton(
-                                shape: new RoundedRectangleBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(28.0)),
-                                splashColor: Colors.white,
-                                color: Colors.white,
+                              child: TextButton(
+                                style: TextButton.styleFrom(
+                                  backgroundColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(28.0),
+                                  ),
+                                  padding: EdgeInsets.all(8),
+                                ),
                                 child: Icon(
                                   icon.icon,
-                                  color: iconColor == null
-                                      ? backgroundColor
-                                      : iconColor,
+                                  size: iconSize,
+                                  color: iconColor ?? backgroundColor,
                                 ),
-                                onPressed: () => {},
+                                onPressed: () {},
                               ),
                             ),
                           )
-                        : Container()
+                        : SizedBox.shrink(),
                   ],
                 ),
-                onPressed: () => onPressed!(),
+                onPressed: () => onPressed?.call(),
               ),
             ],
           ),

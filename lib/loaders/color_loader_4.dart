@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
 import 'dart:math';
+
+import 'package:flutter/material.dart';
+
 import 'dot_type.dart';
 
 class ColorLoader4 extends StatefulWidget {
-
   final Color dotOneColor;
   final Color dotTwoColor;
   final Color dotThreeColor;
@@ -12,12 +13,13 @@ class ColorLoader4 extends StatefulWidget {
   final Icon dotIcon;
 
   ColorLoader4({
+    super.key,
     this.dotOneColor = Colors.redAccent,
     this.dotTwoColor = Colors.green,
     this.dotThreeColor = Colors.blueAccent,
     this.duration = const Duration(milliseconds: 1000),
     this.dotType = DotType.circle,
-    this.dotIcon = const Icon(Icons.blur_on)
+    this.dotIcon = const Icon(Icons.blur_on),
   });
 
   @override
@@ -35,8 +37,7 @@ class _ColorLoader4State extends State<ColorLoader4>
   void initState() {
     super.initState();
 
-    controller = AnimationController(
-        duration: widget.duration, vsync: this);
+    controller = AnimationController(duration: widget.duration, vsync: this);
 
     animation_1 = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
@@ -71,10 +72,10 @@ class _ColorLoader4State extends State<ColorLoader4>
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: new Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          new Transform.translate(
+          Transform.translate(
             offset: Offset(
               0.0,
               -30 *
@@ -82,7 +83,7 @@ class _ColorLoader4State extends State<ColorLoader4>
                       ? animation_1.value
                       : 1.0 - animation_1.value),
             ),
-            child: new Padding(
+            child: Padding(
               padding: const EdgeInsets.only(right: 8.0),
               child: Dot(
                 radius: 10.0,
@@ -100,7 +101,7 @@ class _ColorLoader4State extends State<ColorLoader4>
                       ? animation_2.value
                       : 1.0 - animation_2.value),
             ),
-            child: new Padding(
+            child: Padding(
               padding: const EdgeInsets.only(right: 8.0),
               child: Dot(
                 radius: 10.0,
@@ -118,7 +119,7 @@ class _ColorLoader4State extends State<ColorLoader4>
                       ? animation_3.value
                       : 1.0 - animation_3.value),
             ),
-            child: new Padding(
+            child: Padding(
               padding: const EdgeInsets.only(right: 8.0),
               child: Dot(
                 radius: 10.0,
@@ -135,7 +136,6 @@ class _ColorLoader4State extends State<ColorLoader4>
 
   @override
   void dispose() {
-
     controller.dispose();
     super.dispose();
   }
@@ -151,17 +151,25 @@ class Dot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Center(
-      child: type == DotType.icon ?
-          Icon(icon!.icon, color: color, size: 1.3 * radius!,)
-          : new Transform.rotate(
-        angle: type == DotType.diamond ? pi/4 : 0.0,
-        child: Container(
-          width: radius,
-          height: radius,
-          decoration: BoxDecoration(color: color, shape: type == DotType.circle? BoxShape.circle : BoxShape.rectangle),
-        ),
-      ),
+    return Center(
+      child: type == DotType.icon
+          ? Icon(
+              icon!.icon,
+              color: color,
+              size: 1.3 * radius!,
+            )
+          : Transform.rotate(
+              angle: type == DotType.diamond ? pi / 4 : 0.0,
+              child: Container(
+                width: radius,
+                height: radius,
+                decoration: BoxDecoration(
+                    color: color,
+                    shape: type == DotType.circle
+                        ? BoxShape.circle
+                        : BoxShape.rectangle),
+              ),
+            ),
     );
   }
 }

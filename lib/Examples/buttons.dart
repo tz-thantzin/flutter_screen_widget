@@ -1,114 +1,153 @@
 import 'package:flutter/material.dart';
+
 import '../buttons/simple_round_button.dart';
 import '../buttons/simple_round_icon_button.dart';
 import '../buttons/simple_round_only_icon_button.dart';
 
 class ButtonExample extends StatelessWidget {
+  const ButtonExample({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: new Container(
-        padding: EdgeInsets.only(top: 30.0),
-        color: Colors.white,
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: const Text("Button Examples"),
+        backgroundColor: Colors.deepPurple,
+        foregroundColor: Colors.white,
+      ),
+      body: Container(
+        padding: const EdgeInsets.only(top: 30.0),
         height: MediaQuery.of(context).size.height,
         child: SingleChildScrollView(
-          child: new Column(
-            children: <Widget>[
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            children: [
+              // 1. Simple text button
               SimpleRoundButton(
                 backgroundColor: Colors.redAccent,
-                buttonText: Text(
+                buttonText: const Text(
                   "LOGIN",
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
                 ),
+                onPressed: () => debugPrint("LOGIN pressed"),
               ),
+
+              // 2. Icon + Text (left)
               SimpleRoundIconButton(
                 backgroundColor: Colors.orangeAccent,
-                buttonText: Text(
+                buttonText: const Text(
                   "SEND EMAIL",
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
                 ),
-                icon: Icon(Icons.email),
+                icon: const Icon(Icons.email),
+                onPressed: () => debugPrint("SEND EMAIL pressed"),
               ),
+
+              // 3. Icon + Text (right)
               SimpleRoundIconButton(
                 backgroundColor: Colors.pinkAccent,
-                buttonText: Text(
+                buttonText: const Text(
                   "LISTEN TO MUSIC",
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
                 ),
-                icon: Icon(Icons.headset_mic),
+                icon: const Icon(Icons.headset_mic),
                 iconAlignment: Alignment.centerRight,
+                onPressed: () => debugPrint("LISTEN TO MUSIC pressed"),
               ),
+
+              // 4. Another icon + text
               SimpleRoundIconButton(
                 backgroundColor: Colors.deepOrangeAccent,
-                buttonText: Text(
+                buttonText: const Text(
                   "SHARE ON SOCIAL",
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
                 ),
-                icon: Icon(Icons.share),
+                icon: const Icon(Icons.share),
+                onPressed: () => debugPrint("SHARE pressed"),
               ),
+
+              // 5. Only icon - centered
               SimpleRoundOnlyIconButton(
                 backgroundColor: Colors.lightGreen,
-                icon: Icon(Icons.share),
-                iconAlignment: Alignment.center,
+                icon: const Icon(Icons.share),
+                onPressed: () => debugPrint("Only icon center pressed"),
               ),
-              new Row(
-                children: <Widget>[
-                  new Container(
-                    width: MediaQuery.of(context).size.width * 0.5,
+
+              // 6. Two half-width icon buttons
+              Row(
+                children: [
+                  Expanded(
                     child: SimpleRoundOnlyIconButton(
                       backgroundColor: Colors.blueAccent,
-                      icon: Icon(Icons.phone),
-                      iconAlignment: Alignment.center,
+                      icon: const Icon(Icons.phone),
+                      onPressed: () => debugPrint("Phone pressed"),
                     ),
                   ),
-                  new Container(
-                    width: MediaQuery.of(context).size.width * 0.5,
+                  Expanded(
                     child: SimpleRoundOnlyIconButton(
                       backgroundColor: Colors.redAccent,
-                      icon: Icon(Icons.message),
-                      iconAlignment: Alignment.center,
+                      icon: const Icon(Icons.message),
+                      onPressed: () => debugPrint("Message pressed"),
                     ),
                   ),
                 ],
               ),
+
+              // 7. Icon on right with custom color
               SimpleRoundOnlyIconButton(
                 backgroundColor: Colors.green,
-                icon: Icon(Icons.message),
+                icon: const Icon(Icons.message),
                 iconColor: Colors.redAccent,
                 iconAlignment: Alignment.centerRight,
+                onPressed: () => debugPrint("Right icon pressed"),
               ),
+
+              // 8. Icon on left
               SimpleRoundOnlyIconButton(
                 backgroundColor: Colors.redAccent,
-                icon: Icon(Icons.details),
-                iconColor: Colors.redAccent,
+                icon: const Icon(Icons.details),
                 iconAlignment: Alignment.centerLeft,
+                iconColor: Colors.redAccent,
+                onPressed: () => debugPrint("Left icon pressed"),
               ),
-              new Row(
-                children: <Widget>[
-                  new Container(
-                    width: MediaQuery.of(context).size.width * 0.66,
+
+              // 9. Mixed layout: 66% + 33%
+              Row(
+                children: [
+                  Expanded(
+                    flex: 2,
                     child: SimpleRoundIconButton(
                       backgroundColor: Colors.deepOrangeAccent,
-                      buttonText: Text(
+                      buttonText: const Text(
                         "PLAY",
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
                       ),
-                      icon: Icon(Icons.play_arrow),
+                      icon: const Icon(Icons.play_arrow),
                       iconAlignment: Alignment.centerRight,
+                      onPressed: () => debugPrint("PLAY pressed"),
                     ),
                   ),
-                  new Container(
-                    width: MediaQuery.of(context).size.width * 0.33,
+                  Expanded(
                     child: SimpleRoundButton(
                       backgroundColor: Colors.greenAccent,
-                      buttonText: Text(
+                      buttonText: const Text(
                         "OK",
-                        style: TextStyle(color: Colors.green),
+                        style: TextStyle(
+                            color: Colors.green, fontWeight: FontWeight.bold),
                       ),
+                      onPressed: () => debugPrint("OK pressed"),
                     ),
                   ),
                 ],
               ),
+
+              const SizedBox(height: 40), // Extra bottom padding
             ],
           ),
         ),

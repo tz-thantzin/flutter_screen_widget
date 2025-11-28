@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen1 extends StatelessWidget {
@@ -6,8 +5,8 @@ class LoginScreen1 extends StatelessWidget {
   final Color? backgroundColor;
   final AssetImage backgroundImage;
 
-  LoginScreen1({
-    Key? key,
+  const LoginScreen1({
+    super.key,
     this.primaryColor = Colors.green,
     this.backgroundColor = Colors.white,
     this.backgroundImage = const AssetImage("assets/images/full-bloom.png"),
@@ -17,44 +16,52 @@ class LoginScreen1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: new Container(
+        child: Container(
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-            color: this.backgroundColor,
+            color: backgroundColor,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               Expanded(
-                child: new ClipPath(
+                child: ClipPath(
                   clipper: MyClipper(),
                   child: Container(
                     decoration: BoxDecoration(
-                      image: new DecorationImage(
-                        image: this.backgroundImage,
+                      image: DecorationImage(
+                        image: backgroundImage,
                         fit: BoxFit.cover,
                       ),
                     ),
                     alignment: Alignment.center,
-                    padding: EdgeInsets.only(top: 100.0, bottom: 100.0),
+                    padding: const EdgeInsets.only(top: 100.0, bottom: 100.0),
                     child: Column(
                       children: <Widget>[
                         Text(
                           "DEMO",
-                          style: TextStyle(fontSize: 50.0, fontWeight: FontWeight.bold, color: this.primaryColor),
+                          style: TextStyle(
+                            fontSize: 50.0,
+                            fontWeight: FontWeight.bold,
+                            color: primaryColor,
+                          ),
                         ),
                         Text(
                           "Login Screen 1",
-                          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: this.primaryColor),
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                            color: primaryColor,
+                          ),
                         ),
                       ],
                     ),
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 40.0),
+              const Padding(
+                padding: EdgeInsets.only(left: 40.0),
                 child: Text(
                   "Email",
                   style: TextStyle(color: Colors.grey, fontSize: 16.0),
@@ -63,41 +70,40 @@ class LoginScreen1 extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: Colors.grey.withOpacity(0.5),
+                    color: Colors.grey.withValues(alpha: 0.5),
                     width: 1.0,
                   ),
                   borderRadius: BorderRadius.circular(20.0),
                 ),
-                margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                margin: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 20.0),
                 child: Row(
                   children: <Widget>[
-                    new Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
-                      child: Icon(
-                        Icons.person_outline,
-                        color: Colors.grey,
-                      ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 15.0),
+                      child: Icon(Icons.person_outline, color: Colors.grey),
                     ),
                     Container(
                       height: 30.0,
                       width: 1.0,
-                      color: Colors.grey.withOpacity(0.5),
-                      margin: const EdgeInsets.only(left: 00.0, right: 10.0),
+                      color: Colors.grey.withValues(alpha: 0.5),
+                      margin: const EdgeInsets.only(left: 0.0, right: 10.0),
                     ),
-                    new Expanded(
+                    Expanded(
                       child: TextField(
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Enter your email',
                           hintStyle: TextStyle(color: Colors.grey),
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 40.0),
+              const Padding(
+                padding: EdgeInsets.only(left: 40.0),
                 child: Text(
                   "Password",
                   style: TextStyle(color: Colors.grey, fontSize: 16.0),
@@ -106,149 +112,184 @@ class LoginScreen1 extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: Colors.grey.withOpacity(0.5),
+                    color: Colors.grey.withValues(alpha: 0.5),
                     width: 1.0,
                   ),
                   borderRadius: BorderRadius.circular(20.0),
                 ),
-                margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                margin: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 20.0),
                 child: Row(
                   children: <Widget>[
-                    new Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
-                      child: Icon(
-                        Icons.lock_open,
-                        color: Colors.grey,
-                      ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 15.0),
+                      child: Icon(Icons.lock_open, color: Colors.grey),
                     ),
                     Container(
                       height: 30.0,
                       width: 1.0,
-                      color: Colors.grey.withOpacity(0.5),
-                      margin: const EdgeInsets.only(left: 00.0, right: 10.0),
+                      color: Colors.grey.withValues(alpha: 0.5),
+                      margin: const EdgeInsets.only(left: 0.0, right: 10.0),
                     ),
-                    new Expanded(
+                    Expanded(
                       child: TextField(
-                        decoration: InputDecoration(
+                        obscureText: true,
+                        decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Enter your password',
                           hintStyle: TextStyle(color: Colors.grey),
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
+
+              // ==================== LOGIN BUTTON ====================
               Container(
                 margin: const EdgeInsets.only(top: 20.0),
                 padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                child: new Row(
+                child: Row(
                   children: <Widget>[
-                    new Expanded(
-                      child: FlatButton(
-                        shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                        splashColor: this.primaryColor,
-                        color: this.primaryColor,
-                        child: new Row(
+                    Expanded(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: primaryColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          splashFactory: InkSplash.splashFactory,
+                        ).copyWith(
+                          overlayColor: WidgetStateProperty.all(
+                              primaryColor?.withValues(alpha: 0.3)),
+                        ),
+                        onPressed: () {},
+                        child: Row(
                           children: <Widget>[
-                            new Padding(
-                              padding: const EdgeInsets.only(left: 20.0),
+                            const Padding(
+                              padding: EdgeInsets.only(left: 20.0),
                               child: Text(
                                 "LOGIN",
                                 style: TextStyle(color: Colors.white),
                               ),
                             ),
-                            new Expanded(
-                              child: Container(),
-                            ),
-                            new Transform.translate(
-                              offset: Offset(15.0, 0.0),
-                              child: new Container(
+                            Expanded(child: Container()),
+                            Transform.translate(
+                              offset: const Offset(15.0, 0.0),
+                              child: Container(
                                 padding: const EdgeInsets.all(5.0),
-                                child: FlatButton(
-                                  shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(28.0)),
-                                  splashColor: Colors.white,
-                                  color: Colors.white,
+                                child: TextButton(
+                                  style: TextButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(28.0),
+                                    ),
+                                    minimumSize: const Size(56, 56),
+                                    padding: EdgeInsets.zero,
+                                  ).copyWith(
+                                    overlayColor: WidgetStateProperty.all(
+                                        Colors.white.withValues(alpha: 0.3)),
+                                  ),
+                                  onPressed: () {},
                                   child: Icon(
                                     Icons.arrow_forward,
-                                    color: this.primaryColor,
+                                    color: primaryColor,
                                   ),
-                                  onPressed: () => {},
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
-                        onPressed: () => {},
                       ),
                     ),
                   ],
                 ),
               ),
+
+              // ==================== FACEBOOK BUTTON ====================
               Container(
                 margin: const EdgeInsets.only(top: 10.0),
                 padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                child: new Row(
+                child: Row(
                   children: <Widget>[
-                    new Expanded(
-                      child: FlatButton(
-                        shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                        splashColor: Color(0xFF3B5998),
-                        color: Color(0xff3B5998),
-                        child: new Row(
+                    Expanded(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xff3B5998),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                        ).copyWith(
+                          overlayColor: WidgetStateProperty.all(
+                              const Color(0xFF3B5998).withValues(alpha: 0.3)),
+                        ),
+                        onPressed: () {},
+                        child: Row(
                           children: <Widget>[
-                            new Padding(
-                              padding: const EdgeInsets.only(left: 20.0),
+                            const Padding(
+                              padding: EdgeInsets.only(left: 20.0),
                               child: Text(
                                 "LOGIN WITH FACEBOOK",
                                 style: TextStyle(color: Colors.white),
                               ),
                             ),
-                            new Expanded(
-                              child: Container(),
-                            ),
-                            new Transform.translate(
-                              offset: Offset(15.0, 0.0),
-                              child: new Container(
+                            Expanded(child: Container()),
+                            Transform.translate(
+                              offset: const Offset(15.0, 0.0),
+                              child: Container(
                                 padding: const EdgeInsets.all(5.0),
-                                child: FlatButton(
-                                  shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(28.0)),
-                                  splashColor: Colors.white,
-                                  color: Colors.white,
-                                  child: Icon(
-                                    const IconData(0xea90, fontFamily: 'icomoon'),
+                                child: TextButton(
+                                  style: TextButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(28.0),
+                                    ),
+                                    minimumSize: const Size(56, 56),
+                                    padding: EdgeInsets.zero,
+                                  ).copyWith(
+                                    overlayColor: WidgetStateProperty.all(
+                                        Colors.white.withValues(alpha: 0.3)),
+                                  ),
+                                  onPressed: () {},
+                                  child: const Icon(
+                                    IconData(0xea90, fontFamily: 'icomoon'),
                                     color: Color(0xff3b5998),
                                   ),
-                                  onPressed: () => {},
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
-                        onPressed: () => {},
                       ),
                     ),
                   ],
                 ),
               ),
+
+              // ==================== DON'T HAVE ACCOUNT ====================
               Container(
                 margin: const EdgeInsets.only(top: 20.0),
                 padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                child: new Row(
+                child: Row(
                   children: <Widget>[
-                    new Expanded(
-                      child: FlatButton(
-                        shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                        color: Colors.transparent,
+                    Expanded(
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          foregroundColor: primaryColor,
+                        ),
+                        onPressed: () {},
                         child: Container(
                           padding: const EdgeInsets.only(left: 20.0),
                           alignment: Alignment.center,
                           child: Text(
                             "DON'T HAVE AN ACCOUNT?",
-                            style: TextStyle(color: this.primaryColor),
+                            style: TextStyle(color: primaryColor),
                           ),
                         ),
-                        onPressed: () => {},
                       ),
                     ),
                   ],
@@ -265,13 +306,12 @@ class LoginScreen1 extends StatelessWidget {
 class MyClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    Path p = new Path();
+    Path p = Path();
     p.lineTo(size.width, 0.0);
     p.lineTo(size.width, size.height * 0.85);
     p.arcToPoint(
       Offset(0.0, size.height * 0.85),
       radius: const Radius.elliptical(50.0, 10.0),
-      rotation: 0.0,
     );
     p.lineTo(0.0, 0.0);
     p.close();
@@ -279,7 +319,5 @@ class MyClipper extends CustomClipper<Path> {
   }
 
   @override
-  bool shouldReclip(CustomClipper oldClipper) {
-    return true;
-  }
+  bool shouldReclip(CustomClipper<Path> oldClipper) => true;
 }

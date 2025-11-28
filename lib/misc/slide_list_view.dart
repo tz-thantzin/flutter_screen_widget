@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class SlideListView extends StatefulWidget {
@@ -12,6 +13,7 @@ class SlideListView extends StatefulWidget {
   final AnimatedIconData floatingActionButtonIcon;
 
   SlideListView({
+    super.key,
     this.view1,
     this.view2,
     this.defaultView = "slides",
@@ -68,8 +70,8 @@ class _SlideListViewState extends State<SlideListView>
                 ? AlwaysScrollableScrollPhysics()
                 : NeverScrollableScrollPhysics(),
             controller: _mainPageController,
-            onPageChanged: (int newPage) {
-              if (newPage == 0) {
+            onPageChanged: (int Page) {
+              if (Page == 0) {
                 _currentView = "slides";
               } else {
                 _currentView = "list";

@@ -3,35 +3,34 @@ import 'package:flutter/material.dart';
 class SimpleRoundButton extends StatelessWidget {
   final Color? backgroundColor;
   final Text? buttonText;
-  final Function? onPressed;
+  final VoidCallback? onPressed;
 
-  SimpleRoundButton({this.backgroundColor, this.buttonText, this.onPressed});
+  const SimpleRoundButton({
+    super.key,
+    this.backgroundColor,
+    this.buttonText,
+    this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 20.0),
       padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-      child: new Row(
+      child: Row(
         children: <Widget>[
-          new Expanded(
+          Expanded(
             child: TextButton(
-              style: ButtonStyle(
-                shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(30.0))),
-                overlayColor: MaterialStateProperty.all(this.backgroundColor),
-                backgroundColor: MaterialStateProperty.all(this.backgroundColor),
+              style: TextButton.styleFrom(
+                backgroundColor: backgroundColor,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                padding: const EdgeInsets.symmetric(vertical: 20.0),
               ),
-              child: new Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  new Padding(
-                    padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
-                    child: buttonText,
-                  ),
-                ],
-              ),
-              onPressed: () => onPressed!(),
+              onPressed: onPressed,
+              child: buttonText ?? const SizedBox.shrink(),
             ),
           ),
         ],
